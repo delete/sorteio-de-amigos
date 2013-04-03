@@ -24,7 +24,7 @@ except AttributeError:
 #Mudar a cada 1h
 #Pegar no site, https://developers.facebook.com/docs/reference/api/examples/
 #Connections -> Friends     
-url = 'https://graph.facebook.com/me/friends?access_token=AAAAAAITEghMBAK4uDmLePo2LXvQGLGUnQkz15sHMNHzVhgRyGZAgkR0Ir0x4ubw8R9zzeDnmr06j2vSh2f7pJipVcmhhf5TpWz6ryncaN4o8i2lG1'
+url = 'COLE AQUI O LINK E MANTENHA AS ASPAS'
 #
 ###############################
 

@@ -11,4 +11,8 @@ Abra o arquivo sorteio.py e atualize o link.
 
 É necessário ter o Python3 e o Qt4 instalados.
 
+--Instalação
+-Debian-Like
 
+sudo apt-get install python3
+sudo apt-get install python3-pyqt4
