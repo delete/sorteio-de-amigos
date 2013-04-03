@@ -7,13 +7,11 @@
 # Versão 1.0
 
 from PyQt4 import QtCore, QtGui
-from PyKDE4 import kdecore
-from PyKDE4 import kdeui
 import sys
 import os
 from random import randint
 from fbk import Facebook #arquivo fbk.py
-#from error import Error #aquivo error.py
+
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -26,7 +24,7 @@ except AttributeError:
 #Mudar a cada 1h
 #Pegar no site, https://developers.facebook.com/docs/reference/api/examples/
 #Connections -> Friends     
-url = 'COLE O LINK AQUI E MANTENHA AS ASPAS SIMPLES'
+url = 'https://graph.facebook.com/me/friends?access_token=AAAAAAITEghMBAK4uDmLePo2LXvQGLGUnQkz15sHMNHzVhgRyGZAgkR0Ir0x4ubw8R9zzeDnmr06j2vSh2f7pJipVcmhhf5TpWz6ryncaN4o8i2lG1'
 #
 ###############################
 
@@ -110,10 +108,11 @@ class Error(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(kdecore.i18n(_fromUtf8("ERROR")))
-        self.label.setText(kdecore.i18n(_fromUtf8("Token do Facebook expirou.")))
-        self.label_2.setText(kdecore.i18n(_fromUtf8("Por favor, atualizar no arquivo.")))
-        self.pushButton.setText(kdecore.i18n(_fromUtf8("Sair")))
+        
+        Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "ERROR", None, QtGui.QApplication.UnicodeUTF8))        
+        self.label.setText(QtGui.QApplication.translate("Dialog", "Token do Facebook expirou.", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Por favor, atualizar no arquivo.", None, QtGui.QApplication.UnicodeUTF8))    
+        self.pushButton.setText(QtGui.QApplication.translate("Dialog", "Sair", None, QtGui.QApplication.UnicodeUTF8))
 
     def sair(self):
         sys.exit()
