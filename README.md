@@ -15,4 +15,5 @@ Abra o arquivo sorteio.py e atualize o link.
 -Debian-Like
 
 sudo apt-get install python3
+
 sudo apt-get install python3-pyqt4
