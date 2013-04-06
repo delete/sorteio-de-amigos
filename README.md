@@ -7,7 +7,7 @@ Acesse: https://developers.facebook.com/docs/reference/api/examples/
 
 "Connections -> Friends:" e copie o link dado.
 
-Abra o arquivo sorteio.py e atualize o link.
+Cole o link no programa.
 
 É necessário ter o Python3 e o Qt4 instalados.
 
