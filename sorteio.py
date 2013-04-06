@@ -4,7 +4,7 @@
 #
 # Created: Tue Apr  2 18:18:07 2013
 #      by: PyQt4 UI code generator 4.9.1
-# Versão 2.0
+# Versão 1.1
 
 ##############################
 #
