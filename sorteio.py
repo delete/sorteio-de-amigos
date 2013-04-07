@@ -93,8 +93,8 @@ class Ui_Dialog(object):
 class Error(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        #Dialog.resize(250, 194)
-        Dialog.resize(345, 345)
+        Dialog.resize(250, 194)
+        #Dialog.resize(345, 345)
 
         self.label = QtGui.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(40, 20, 181, 20))
