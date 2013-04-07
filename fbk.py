@@ -18,9 +18,9 @@ class Facebook(object):
 	
 	def baixarFoto(self):
 		#data = self.procura()
-		url = 'https://graph.facebook.com/' + self.user + '/picture?type=large'
+		url = 'https://graph.facebook.com/' + self.user + '/picture?width=200&height=200'
 		figura = urllib.request.urlopen(url).read()
-		arq = 'sorteados/' + self.user + '.jpg'
+		arq = 'images/sorteados/' + self.user + '.jpg'
 		f = open(arq,"wb")
 		f.write(figura)
 		f.close()
@@ -32,7 +32,7 @@ class Facebook(object):
 	    data = json.loads(resp.decode('utf-8'))	    
 	    return data
 
-	def profile(self):
+	def profile(self): #imprime todos os dados de um user
 		data = self.procura()
 		print ("User: " + data['username'])
 		print ("Nome: " + data['first_name'])
@@ -41,9 +41,9 @@ class Facebook(object):
 		print ("Sexo: " + data['gender'])
 		print ("ID: " + data['id'])
 
-	#Recebe a URL token, e o tipo chace que sera adicionada
+	#Recebe a URL token, e o tipo chave que sera adicionada
 	#Podendo ser 'id' ou 'username'
-	#Retorna a lista e o tamanho dela
+	#Retorna um tupla com a lista e o tamanho dela
 	def listarAmigos(url, tipo):
 		lista = []
 		cont = 0
@@ -61,9 +61,9 @@ class Facebook(object):
 		total_de_pessoas = 10
 		try:
 			dir_atual = os.getcwd()
-			lista_Sorteados = os.listdir(dir_atual + '/sorteados/')
+			lista_Sorteados = os.listdir(dir_atual + '/images/sorteados/')
 			if len(lista_Sorteados) > total_de_pessoas:
 				for pessoa in lista_Sorteados:			
-					os.remove(dir_atual + '/sorteados/' + pessoa)	
+					os.remove(dir_atual + '/images/sorteados/' + pessoa)	
 		except OSError:
 			print ("\nArquivo ou diretório não existe!\n")
