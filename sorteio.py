@@ -4,7 +4,7 @@
 #
 # Created: Tue Apr  2 18:18:07 2013
 #      by: PyQt4 UI code generator 4.9.1
-# Versão 1.1
+# Versão 1.2
 
 ##############################
 #
@@ -18,7 +18,7 @@
 from PyQt4 import QtCore, QtGui
 import sys
 import os
-from random import randint
+import random
 from fbk import Facebook #arquivo fbk.py
 
 
@@ -67,25 +67,25 @@ class Ui_Dialog(object):
         self.label2.setText(QtGui.QApplication.translate("Dialog", "@pinheirofellipe", None, QtGui.QApplication.UnicodeUTF8))
 
     def atividade(self):    
-        #Deleta as fotos, se tiver mais de 10
+        #Deleta as fotos, se tiverem mais de 10
         Facebook.limpaDados()
 
-        #Sorteia um numero
-        sorteado = sorteia(lista, cont)
+        #Sorteia uma pessoa        
+        sorteado = random.choice(lista)
 
-        #Intancia um objeto com o vencedor
-        f = Facebook(lista[sorteado])
+        #Intancia um objeto com o vencedor        
+        f = Facebook(sorteado)
 
-
-        #procura o nome pelo id
+        #Procura o nome pelo id
         data = f.procura()    
 
+        #Baixa a foto do perfil
         arq = f.baixarFoto()
 
-        #deleta o sorteado da lista
-        lista.pop(sorteado)
+        #Deleta o sorteado da lista        
+        lista.remove(sorteado)
 
-        #Muda os dados dos sorteados
+        #Muda os dados do sorteado na janela
         self.label.setText(QtGui.QApplication.translate("Dialog",data['name'], None, QtGui.QApplication.UnicodeUTF8))
         self.image.setPixmap(QtGui.QPixmap(arq))
 
@@ -93,8 +93,8 @@ class Ui_Dialog(object):
 class Error(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(250, 194)
-        #Dialog.resize(345, 345)
+        #Dialog.resize(250, 194)
+        Dialog.resize(345, 345)
 
         self.label = QtGui.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(40, 20, 181, 20))
@@ -143,12 +143,6 @@ class Error(object):
         self.sair()
 
 
-def sorteia(lista, cont):
-    lista.sort()
-    sorteado = randint(0,cont)
-    return sorteado
-
-
 def carregarUrl():
     arq = open("url", "r")
     url = arq.read()
@@ -156,11 +150,12 @@ def carregarUrl():
     return url
 
 
-def main():
+if __name__ == "__main__":
+    
     try:
         url = carregarUrl()
-        lista,cont = Facebook.listarAmigos(url,'id')        
-        
+        lista,quantidade = Facebook.listarAmigos(url,'id')        
+    
     except Exception: #abre a janela de erro
         app = QtGui.QApplication(sys.argv)
         error = QtGui.QDialog()
@@ -175,7 +170,3 @@ def main():
         ui.setupUi(Dialog)
         Dialog.show()
         sys.exit(app.exec_())
-
-if __name__ == "__main__":
-    
-    main()
