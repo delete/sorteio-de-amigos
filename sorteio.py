@@ -41,7 +41,7 @@ class Ui_Dialog(object):
 
         #Nome da pessoa
         self.label = QtGui.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 260, 231, 20))
+        self.label.setGeometry(QtCore.QRect(40, 260, 231, 20))
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName(_fromUtf8("label"))
@@ -55,7 +55,7 @@ class Ui_Dialog(object):
 
         self.image = QtGui.QLabel(Dialog)
         self.image.setPixmap(QtGui.QPixmap('images/fb-icon.png')) # imagem default      
-        self.image.setGeometry(69, 20, 211, 200)
+        self.image.setGeometry(60, 30, 200, 200) 
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -92,29 +92,29 @@ class Ui_Dialog(object):
 #Janela de erro
 class Error(object):
     def setupUi(self, Dialog):
-        Dialog.setObjectName(_fromUtf8("Dialog"))
-        #Dialog.resize(250, 194)
-        Dialog.resize(345, 345)
+        Dialog.setObjectName(_fromUtf8("Dialog"))        
+        Dialog.resize(400, 245)
+        Dialog.setMaximumSize(QtCore.QSize(400, 245))
 
         self.label = QtGui.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(40, 20, 181, 20))
+        self.label.setGeometry(QtCore.QRect(120, 20, 181, 20))
         self.label.setObjectName(_fromUtf8("label"))
         self.label_2 = QtGui.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(30, 60, 221, 31))
+        self.label_2.setGeometry(QtCore.QRect(70, 60, 261, 31))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         
         #Botão sair
         self.pushButton = QtGui.QPushButton(Dialog) 
-        self.pushButton.setGeometry(QtCore.QRect(130, 160, 99, 24))
+        self.pushButton.setGeometry(QtCore.QRect(250, 190, 99, 24))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         
         #Botão atualizar
         self.pushButton2 = QtGui.QPushButton(Dialog) 
-        self.pushButton2.setGeometry(QtCore.QRect(10, 160, 99, 24))
+        self.pushButton2.setGeometry(QtCore.QRect(40, 190, 99, 24))
         self.pushButton2.setObjectName(_fromUtf8("pushButton2"))
 
-        self.textEdit = QtGui.QTextEdit(Dialog)
-        self.textEdit.setGeometry(QtCore.QRect(10, 110, 231, 31))
+        self.textEdit = QtGui.QTextEdit(Dialog)        
+        self.textEdit.setGeometry(QtCore.QRect(10, 110, 371, 51))
         self.textEdit.setObjectName(_fromUtf8("textEdit"))
 
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.sair)
@@ -127,7 +127,7 @@ class Error(object):
         
         Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "ERROR", None, QtGui.QApplication.UnicodeUTF8))        
         self.label.setText(QtGui.QApplication.translate("Dialog", "Token do Facebook expirou.", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Por favor, atualize o link \ne reabra o programa.", None, QtGui.QApplication.UnicodeUTF8))    
+        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Por favor, atualize o link e reabra o programa.", None, QtGui.QApplication.UnicodeUTF8))    
         self.pushButton.setText(QtGui.QApplication.translate("Dialog", "Sair", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButton2.setText(QtGui.QApplication.translate("Dialog", "Atualizar", None, QtGui.QApplication.UnicodeUTF8))
         self.textEdit.setText(QtGui.QApplication.translate("Dialog", "", None, QtGui.QApplication.UnicodeUTF8))
@@ -154,8 +154,7 @@ if __name__ == "__main__":
     
     try:
         url = carregarUrl()
-        lista,quantidade = Facebook.listarAmigos(url,'id')        
-    
+        lista,quantidade = Facebook.listarAmigos(url,'id')    
     except Exception: #abre a janela de erro
         app = QtGui.QApplication(sys.argv)
         error = QtGui.QDialog()
