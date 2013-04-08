@@ -144,7 +144,7 @@ class Error(object):
 
 
 def carregarUrl():
-    arq = open("url", "r")
+    arq = open("url.txt", "r")
     url = arq.read()
     arq.close()
     return url
