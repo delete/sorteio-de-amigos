@@ -16,6 +16,7 @@
 ###############################
 
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtCore import *
 import sys
 import os
 import random
@@ -34,10 +35,13 @@ class Ui_Dialog(object):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(320, 345)    
         Dialog.setMaximumSize(QtCore.QSize(320, 345))
+        Dialog.setWindowIcon(QtGui.QIcon('icon.ico'))
+        
+        #Sortear
         self.pushButton = QtGui.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(110, 300, 99, 24))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))        
-        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.atividade)
+        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL("clicked()"), self.atividade)        
 
         #Nome da pessoa
         self.label = QtGui.QLabel(Dialog)
@@ -50,7 +54,8 @@ class Ui_Dialog(object):
         self.label2.setGeometry(QtCore.QRect(206, 320, 101, 20))
         self.label2.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label2.setObjectName(_fromUtf8("label2"))        
+        self.label2.setObjectName(_fromUtf8("label2"))
+        QtCore.QObject.connect(self.label2, QtCore.SIGNAL("linkActivated(QString)"), self.openUrl) 
 
 
         self.image = QtGui.QLabel(Dialog)
@@ -63,8 +68,8 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Sorteio de Amigos", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButton.setText(QtGui.QApplication.translate("Dialog", "Sortear", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Dialog", "Que comecem os sorteios.", None, QtGui.QApplication.UnicodeUTF8))
-        self.label2.setText(QtGui.QApplication.translate("Dialog", "@pinheirofellipe", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Dialog","Que os sorteios comecem!" , None, QtGui.QApplication.UnicodeUTF8))
+        self.label2.setText(QtGui.QApplication.translate("Dialog", '<a href="http://www.twitter.com/pinheirofellipe">Contato</a></em>', None, QtGui.QApplication.UnicodeUTF8))
 
     def atividade(self):    
         #Deleta as fotos, se tiverem mais de 10
@@ -86,8 +91,15 @@ class Ui_Dialog(object):
         lista.remove(sorteado)
 
         #Muda os dados do sorteado na janela
-        self.label.setText(QtGui.QApplication.translate("Dialog",data['name'], None, QtGui.QApplication.UnicodeUTF8))
+        #self.label.setText(QtGui.QApplication.translate("Dialog",'<a href="http://www.gogole.com.br>' +  data ['name'] +'</a></em>', None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Dialog",'<a href="http://www.facebook.com.br/'+ data['id'] +'">'+ data['name'] +'</a></em>', None, QtGui.QApplication.UnicodeUTF8))
+        QtCore.QObject.connect(self.label, QtCore.SIGNAL("linkActivated(QString)"), self.openUrl) 
         self.image.setPixmap(QtGui.QPixmap(arq))
+
+    def openUrl(self,URL):
+        QtGui.QDesktopServices().openUrl(QUrl(URL))
+
+        
 
 #Janela de erro
 class Error(object):
@@ -95,6 +107,7 @@ class Error(object):
         Dialog.setObjectName(_fromUtf8("Dialog"))        
         Dialog.resize(400, 245)
         Dialog.setMaximumSize(QtCore.QSize(400, 245))
+        Dialog.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         self.label = QtGui.QLabel(Dialog)
         self.label.setGeometry(QtCore.QRect(120, 20, 181, 20))
@@ -137,16 +150,16 @@ class Error(object):
 
     def atualizar(self):
         url = self.textEdit.toPlainText()
-        arq = open("url", "w")
+        arq = open("url.txt", "w")
         arq.write(url)
         arq.close()                
         self.sair()
 
 
-def carregarUrl():
+def carregarUrl():    
     arq = open("url.txt", "r")
     url = arq.read()
-    arq.close()
+    arq.close()            
     return url
 
 
