@@ -1,7 +1,7 @@
 Sorteio de amigos do Facebook
 =============================
 
-Para que o programa funcione é preciso atualizar um link a cada uma hora, que o Facebook disponibiliza.
+Para que o programa funcione, é preciso atualizar a cada uma hora um link que o Facebook disponibiliza.
 
 Acesse: https://developers.facebook.com/docs/reference/api/examples/
 
