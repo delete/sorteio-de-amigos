@@ -110,12 +110,24 @@ class Error(object):
         Dialog.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         self.label = QtGui.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(120, 20, 181, 20))
+        self.label.setGeometry(QtCore.QRect(120, 10, 181, 20))
         self.label.setObjectName(_fromUtf8("label"))
-        self.label_2 = QtGui.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(70, 60, 261, 31))
-        self.label_2.setObjectName(_fromUtf8("label_2"))
+
+        self.label2 = QtGui.QLabel(Dialog)
+        self.label2.setGeometry(QtCore.QRect(50, 40, 301, 31))
+        self.label2.setObjectName(_fromUtf8("label2"))
+        QtCore.QObject.connect(self.label2, QtCore.SIGNAL("linkActivated(QString)"), self.openUrl) 
         
+        self.label3 = QtGui.QLabel(Dialog)
+        self.label3.setGeometry(QtCore.QRect(80, 70, 241, 31))
+        self.label3.setObjectName(_fromUtf8("label3"))
+        
+        #Contato
+        self.label4 = QtGui.QLabel(Dialog)
+        self.label4.setGeometry(QtCore.QRect(340, 220, 56, 15))
+        self.label4.setObjectName(_fromUtf8("label4"))
+        QtCore.QObject.connect(self.label4, QtCore.SIGNAL("linkActivated(QString)"), self.openUrl) 
+
         #Botão sair
         self.pushButton = QtGui.QPushButton(Dialog) 
         self.pushButton.setGeometry(QtCore.QRect(250, 190, 99, 24))
@@ -136,11 +148,12 @@ class Error(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-    def retranslateUi(self, Dialog):
-        
+    def retranslateUi(self, Dialog):        
         Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "ERROR", None, QtGui.QApplication.UnicodeUTF8))        
         self.label.setText(QtGui.QApplication.translate("Dialog", "Token do Facebook expirou.", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Dialog", "Por favor, atualize o link e reabra o programa.", None, QtGui.QApplication.UnicodeUTF8))    
+        self.label2.setText(QtGui.QApplication.translate("Dialog", 'Copie a URL de: "Connections -> Friends" nesse' + '<a href="https://developers.facebook.com/docs/reference/api/examples/"> link.</a></em>', None, QtGui.QApplication.UnicodeUTF8))
+        self.label3.setText(QtGui.QApplication.translate("Dialog", "Cole a URL, atualize e reabra o programa.", None, QtGui.QApplication.UnicodeUTF8))    
+        self.label4.setText(QtGui.QApplication.translate("Dialog", '<a href="http://www.twitter.com/pinheirofellipe">Contato</a></em>', None, QtGui.QApplication.UnicodeUTF8))
         self.pushButton.setText(QtGui.QApplication.translate("Dialog", "Sair", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButton2.setText(QtGui.QApplication.translate("Dialog", "Atualizar", None, QtGui.QApplication.UnicodeUTF8))
         self.textEdit.setText(QtGui.QApplication.translate("Dialog", "", None, QtGui.QApplication.UnicodeUTF8))
@@ -155,6 +168,8 @@ class Error(object):
         arq.close()                
         self.sair()
 
+    def openUrl(self,URL):
+        QtGui.QDesktopServices().openUrl(QUrl(URL))
 
 def carregarUrl():    
     arq = open("url.txt", "r")
