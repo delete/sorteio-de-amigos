@@ -25,3 +25,4 @@ Baixar o Python3: http://python.org/download/
 
 Baixar o PyQt4: http://www.riverbankcomputing.co.uk/software/pyqt/download
 
+![](http://i.imgur.com/Pq7E5Q8.jpg)
