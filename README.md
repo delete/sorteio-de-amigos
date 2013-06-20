@@ -11,7 +11,7 @@ Cole o link no programa.
 
 É necessário ter o Python3 e o Qt4 instalados.
 
---Instalação
+#--Instalação
 
 -Debian-Like
 
